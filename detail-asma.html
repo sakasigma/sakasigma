@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Asma Bronkial | SehatPedia</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a5f7a;
+            --primary-dark: #0f4c5f;
+            --accent: #117f5f;
+            --accent-light: #e9f5ee;
+            --warn: #ffc107;
+            --warn-light: #fef7e0;
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --navy: #0a2e3b;
+            --text: #1a2e3b;
+            --muted: #6b8694;
+        }
+        * { font-family: 'Plus Jakarta Sans', sans-serif; box-sizing: border-box; }
+        body {
+            background: linear-gradient(145deg, var(--bg) 0%, var(--bg2) 100%);
+            color: var(--text);
+            scroll-behavior: smooth;
+            min-height: 100vh;
+        }
+
+        .navbar { background-color: var(--navy) !important; }
+        .navbar-brand { font-weight: 800; letter-spacing: -0.5px; font-size: 1.5rem; }
+        .nav-link { font-weight: 500; }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 0 0 2rem 2rem;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            padding: 3rem 0 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::before {
+            content: '';
+            position: absolute; top: -40px; right: -40px;
+            width: 280px; height: 280px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .detail-container { background: white; border-radius: 1.25rem; padding: 2.5rem; box-shadow: 0 6px 20px rgba(0,0,0,0.06); margin-bottom: 2rem; }
+
+        .disease-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
+        .disease-icon {
+            width: 80px; height: 80px;
+            border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem;
+        }
+        .disease-icon.asma { background: #e8f0ff; color: #6366f1; }
+
+        .section-card { background: #f8fafc; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1.5rem; }
+        .section-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; color: var(--primary); }
+
+        .symptom-list { list-style: none; padding: 0; }
+        .symptom-list li { padding: 0.5rem 0; display: flex; align-items: start; gap: 0.8rem; }
+        .symptom-list li i { color: #6366f1; font-weight: bold; margin-top: 0.2rem; }
+
+        .drug-badge {
+            background: var(--accent-light);
+            color: var(--accent);
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+
+        .drug-item { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px dashed #e8f0f5; }
+        .drug-item:last-child { border-bottom: none; }
+        .drug-group { margin-bottom: 1.5rem; }
+
+        .trad-box {
+            background: var(--warn-light);
+            border-left: 4px solid var(--warn);
+            border-radius: 0.75rem;
+            padding: 1.2rem;
+        }
+
+        .btn-back { background: var(--primary); color: white; border: none; padding: 0.6rem 1.5rem; border-radius: 40px; font-weight: 600; transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .btn-back:hover { background: var(--primary-dark); transform: translateX(-3px); color: white; }
+
+        .footer { background: var(--navy); color: #cddfe6; border-radius: 1.5rem 1.5rem 0 0; }
+
+        @media (max-width: 768px) {
+            .disease-header { flex-direction: column; text-align: center; }
+            .detail-container { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <i class="bi bi-capsule me-2"></i>SehatPedia
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                <li class="nav-item"><a class="nav-link active fw-bold text-warning" href="penyakit.html">Penyakit</a></li>
+                <li class="nav-item"><a class="nav-link" href="tentang.html">Tentang</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Header -->
+<div class="page-header text-white mb-4">
+    <div class="container">
+        <a href="penyakit.html" class="btn-back mb-3">
+            <i class="bi bi-arrow-left"></i> Kembali ke Daftar Penyakit
+        </a>
+        <div class="disease-header">
+            <div class="disease-icon asma">
+                <i class="bi bi-lungs-fill"></i>
+            </div>
+            <div class="text-start">
+                <h1 class="fw-bold mb-2" style="font-size: 2rem;">Asma Bronkial</h1>
+                <span class="badge bg-white bg-opacity-25 text-white">Pernapasan</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="container mb-5">
+    <div class="detail-container">
+        <!-- Gejala -->
+        <div class="section-card">
+            <h5 class="section-title"><i class="bi bi-clipboard-data-fill me-2" style="color: #6366f1;"></i>Gejala Utama</h5>
+            <ul class="symptom-list">
+                <li><i class="bi bi-check-circle-fill"></i> Sesak napas</li>
+                <li><i class="bi bi-check-circle-fill"></i> Bunyi mengi (wheezing)</li>
+                <li><i class="bi bi-check-circle-fill"></i> Batuk terutama malam/dini hari</li>
+                <li><i class="bi bi-check-circle-fill"></i> Dada terasa tertekan</li>
+                <li><i class="bi bi-check-circle-fill"></i> Napas cepat</li>
+            </ul>
+        </div>
+
+        <!-- Penyebab -->
+        <div class="section-card">
+            <h5 class="section-title"><i class="bi bi-bug-fill me-2" style="color: #ffc107;"></i>Penyebab</h5>
+            <p>Peradangan saluran napas akibat berbagai pemicu, termasuk alergen (debu, asap, bulu hewan), infeksi virus, olahraga berat, atau perubahan cuaca. Asma terjadi ketika saluran napas menyempit dan membengkak, mengurangi aliran udara ke paru-paru.</p>
+        </div>
+
+        <!-- Obat-obatan -->
+        <div class="section-card">
+            <h5 class="section-title"><i class="bi bi-capsule-pill me-2" style="color: var(--primary);"></i>💊 Rekomendasi Obat</h5>
+
+            <div class="drug-group">
+                <span class="drug-badge"><i class="bi bi-prescription2 me-1"></i>Reliever (Penolong Cepat)</span>
+                <div class="mt-2 ms-2">
+                    <div class="drug-item">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                        <span>Salbutamol (Ventolin) inhaler</span>
+                    </div>
+                    <div class="drug-item">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                        <span>Terbutaline</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="drug-group">
+                <span class="drug-badge"><i class="bi bi-prescription2 me-1"></i>Controller (Pengendali Jangka Panjang)</span>
+                <div class="mt-2 ms-2">
+                    <div class="drug-item">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                        <span>Kortikosteroid inhalasi (Budesonide, Fluticasone)</span>
+                    </div>
+                    <div class="drug-item">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                        <span>Montelukast tablet</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-warning py-2 small rounded-3">
+                <i class="bi bi-exclamation-triangle-fill me-1"></i> <strong>Penting:</strong> Dosis dan pemilihan obat harus berdasarkan anjuran dokter atau apoteker. Selalu bawa inhaler reliever saat bepergian.
+            </div>
+        </div>
+
+        <!-- Pencegahan -->
+        <div class="section-card">
+            <h5 class="section-title"><i class="bi bi-shield-check me-2" style="color: #28a745;"></i>Pencegahan</h5>
+            <ul class="symptom-list">
+                <li><i class="bi bi-shield-check" style="color: #28a745;"></i> Hindari pemicu asma yang diketahui</li>
+                <li><i class="bi bi-shield-check" style="color: #28a745;"></i> Pakai masker saat berada di lingkungan berdebu</li>
+                <li><i class="bi bi-shield-check" style="color: #28a745;"></i> Rutin kontrol dan gunakan peak flow meter</li>
+                <li><i class="bi bi-shield-check" style="color: #28a745;"></i> Hindari paparan asap rokok dan polusi udara</li>
+                <li><i class="bi bi-shield-check" style="color: #28a745;"></i> Latihan pernapasan dan manajemen stres</li>
+            </ul>
+        </div>
+
+        <!-- Pengobatan Alternatif -->
+        <div class="trad-box">
+            <h5 class="fw-bold mb-2"><i class="bi bi-flower1 me-2" style="color: #28a745;"></i>🌿 Pengobatan Alternatif & Herbal</h5>
+            <p class="mb-0">Minum jahe, madu dan teh hijau, hindari alergen, latihan pernapasan yang teratur. Namun tetap lakukan pengobatan medis sebagai prioritas dan jangan menghentikan obat controller tanpa konsultasi dokter.</p>
+        </div>
+
+        <div class="alert alert-info mt-4 rounded-3">
+            <i class="bi bi-info-circle me-2"></i>
+            <strong>Catatan Penting:</strong> Informasi ini bersifat edukatif. Untuk diagnosis dan pengobatan yang akurat, selalu konsultasikan dengan dokter atau profesional kesehatan yang berpengalaman.
+        </div>
+    </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer pt-4 pb-3 mt-5">
+    <div class="container text-center">
+        <p class="mb-1"><i class="bi bi-heart-fill text-danger"></i> SehatPedia — Edukasi Kesehatan Terpercaya</p>
+        <small>&copy; 2025 • Informasi bersifat edukatif. Konsultasi medis sangat dianjurkan.</small>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

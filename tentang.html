@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami | Obat Sehat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary:      #1a5f7a;
+            --primary-dark: #0f4c5f;
+            --accent:       #117f5f;
+            --accent-light: #e9f5ee;
+            --warn:         #ffc107;
+            --warn-light:   #fef7e0;
+            --bg:           #eef2f7;
+            --bg2:          #d9e2ec;
+            --navy:         #0a2e3b;
+            --text:         #1a2e3b;
+            --muted:        #6b8694;
+        }
+        * { font-family: 'Plus Jakarta Sans', sans-serif; box-sizing: border-box; }
+        body {
+            background: linear-gradient(145deg, var(--bg) 0%, var(--bg2) 100%);
+            color: var(--text);
+            scroll-behavior: smooth;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+        .navbar { background-color: var(--navy) !important; }
+        .navbar-brand { font-weight: 800; letter-spacing: -0.5px; font-size: 1.5rem; }
+        .nav-link { font-weight: 500; }
+
+        /* PAGE HEADER */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 0 0 2rem 2rem;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            padding: 3.5rem 0 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::before {
+            content: '';
+            position: absolute; top: -50px; right: -50px;
+            width: 300px; height: 300px; border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+        }
+        .page-header::after {
+            content: '';
+            position: absolute; bottom: -70px; left: -30px;
+            width: 220px; height: 220px; border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+        }
+
+        /* CARDS */
+        .card-plain {
+            background: white;
+            border-radius: 1.25rem;
+            border: none;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+
+        /* MISSION CARDS */
+        .mission-card {
+            background: white;
+            border-radius: 1.25rem;
+            border: none;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            padding: 1.75rem;
+            height: 100%;
+            transition: transform 0.25s, box-shadow 0.25s;
+            position: relative;
+            overflow: hidden;
+        }
+        .mission-card::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0;
+            height: 4px;
+        }
+        .mission-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 32px -8px rgba(26,95,122,0.15);
+        }
+        .mission-icon {
+            width: 58px; height: 58px;
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 1.1rem;
+        }
+
+        /* FEATURE LIST */
+        .feature-row {
+            display: flex; align-items: flex-start; gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f0f4f7;
+        }
+        .feature-row:last-child { border-bottom: none; }
+        .feature-dot {
+            width: 42px; height: 42px; min-width: 42px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        /* STATS STRIP */
+        .stats-strip {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 1.25rem;
+            padding: 2rem;
+            color: white;
+        }
+        .stat-box { text-align: center; padding: 0.5rem; }
+        .stat-num { font-size: 2.2rem; font-weight: 800; line-height: 1; }
+        .stat-label { font-size: 0.8rem; opacity: 0.85; margin-top: 4px; }
+
+        /* DISCLAIMER */
+        .disclaimer-box {
+            background: white;
+            border-radius: 1.25rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            padding: 2rem;
+            border-top: 5px solid var(--warn);
+        }
+        .disclaimer-item {
+            display: flex; align-items: flex-start; gap: 0.9rem;
+            padding: 0.85rem 0;
+            border-bottom: 1px dashed #e8f0f5;
+        }
+        .disclaimer-item:last-child { border-bottom: none; }
+
+        /* TEAM */
+        .team-card {
+            background: white;
+            border-radius: 1.25rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            padding: 1.75rem;
+            text-align: center;
+            height: 100%;
+            transition: transform 0.25s;
+        }
+        .team-card:hover { transform: translateY(-4px); }
+        .avatar-ring {
+            width: 72px; height: 72px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--bg2);
+        }
+
+        /* FAQ */
+        .accordion-button:not(.collapsed) {
+            background: var(--accent-light);
+            color: var(--accent);
+            font-weight: 700;
+            box-shadow: none;
+        }
+        .accordion-button:focus { box-shadow: none; }
+        .accordion-item {
+            border: none;
+            border-radius: 0.75rem !important;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* CTA */
+        .cta-block {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--navy) 100%);
+            border-radius: 1.25rem;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-block::before {
+            content: '';
+            position: absolute; right: -40px; top: -40px;
+            width: 200px; height: 200px; border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+        }
+        .btn-cta {
+            background: var(--warn);
+            color: var(--navy);
+            border: none;
+            border-radius: 50px;
+            padding: 0.75rem 2rem;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+        .btn-cta:hover { background: #e6ac00; transform: scale(0.98); }
+        .btn-outline-light-custom {
+            border: 2px solid rgba(255,255,255,0.4);
+            color: white;
+            border-radius: 50px;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            transition: 0.2s;
+            background: transparent;
+        }
+        .btn-outline-light-custom:hover { background: rgba(255,255,255,0.1); color: white; }
+
+        /* FOOTER */
+        .footer { background: var(--navy); color: #cddfe6; border-radius: 1.5rem 1.5rem 0 0; }
+
+        @media (max-width: 768px) {
+            .page-header { border-radius: 0 0 1rem 1rem; padding: 2rem 0 1.5rem; }
+            .stat-num { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <i class="bi bi-capsule me-2"></i>Obat Sehat
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                <li class="nav-item"><a class="nav-link" href="penyakit.html">Penyakit</a></li>
+                <li class="nav-item"><a class="nav-link active fw-bold text-warning" href="tentang.html">Tentang</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Header -->
+<div class="page-header text-white mb-5">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="mb-2">
+            <ol class="breadcrumb mb-0" style="font-size:0.82rem; opacity:0.75;">
+                <li class="breadcrumb-item"><a href="index.html" class="text-white text-decoration-none">Beranda</a></li>
+                <li class="breadcrumb-item active text-white-50">Tentang</li>
+            </ol>
+        </nav>
+        <div class="row align-items-center g-4">
+            <div class="col-md-7">
+                <h1 class="fw-bold mb-2" style="font-size:2.2rem;">
+                    <i class="bi bi-info-circle me-2"></i>Tentang Obat Sehat
+                </h1>
+                <p style="opacity:0.85; max-width:520px;">Platform edukasi kesehatan digital yang menyediakan informasi penyakit, gejala, dan rekomendasi penanganan secara mudah dan terpercaya.</p>
+            </div>
+            <div class="col-md-5 text-md-end">
+                <i class="bi bi-shield-plus-fill" style="font-size: 6rem; opacity: 0.15; position:absolute; right:2rem; top:1rem;"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="container mb-5">
+
+    <!-- Stats Strip -->
+    <div class="stats-strip mb-5">
+        <div class="row g-3 text-center">
+            <div class="col-6 col-md-3">
+                <div class="stat-box">
+                    <div class="stat-num">6+</div>
+                    <div class="stat-label">Penyakit Terdokumentasi</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-box">
+                    <div class="stat-num">30+</div>
+                    <div class="stat-label">Rekomendasi Obat</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-box">
+                    <div class="stat-num">100%</div>
+                    <div class="stat-label">Gratis & Terbuka</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-box">
+                    <div class="stat-num">24/7</div>
+                    <div class="stat-label">Informasi Tersedia</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Misi & Visi -->
+    <h2 class="fw-bold mb-4 text-center">Visi & Misi Kami</h2>
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="mission-card" style="--c:#1a5f7a;">
+                <div class="mission-icon" style="background:#e8f4fa; color:#1a5f7a;">
+                    <i class="bi bi-eye-fill"></i>
+                </div>
+                <h5 class="fw-bold mb-2">Visi</h5>
+                <p class="text-muted mb-0" style="font-size:0.9rem;">Menjadi platform edukasi kesehatan digital terpercaya yang membantu masyarakat Indonesia memahami kondisi kesehatan mereka secara mudah, cepat, dan akurat.</p>
+                <div style="position:absolute; bottom:0; left:0; right:0; height:4px; background:linear-gradient(90deg,#1a5f7a,#0d6efd);"></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="mission-card">
+                <div class="mission-icon" style="background:#e9f5ee; color:#117f5f;">
+                    <i class="bi bi-bullseye"></i>
+                </div>
+                <h5 class="fw-bold mb-2">Misi Utama</h5>
+                <p class="text-muted mb-0" style="font-size:0.9rem;">Menyediakan informasi kesehatan yang komprehensif, mudah dipahami oleh semua kalangan, dan selalu mendorong pengguna untuk berkonsultasi dengan tenaga medis profesional.</p>
+                <div style="position:absolute; bottom:0; left:0; right:0; height:4px; background:linear-gradient(90deg,#117f5f,#20c997);"></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="mission-card">
+                <div class="mission-icon" style="background:#fff8e8; color:#e67e00;">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <h5 class="fw-bold mb-2">Untuk Siapa?</h5>
+                <p class="text-muted mb-0" style="font-size:0.9rem;">Dibuat untuk semua orang — pelajar, orang tua, tenaga kesehatan pemula, atau siapa saja yang ingin memahami gejala dan tindakan awal terhadap kondisi kesehatan.</p>
+                <div style="position:absolute; bottom:0; left:0; right:0; height:4px; background:linear-gradient(90deg,#e67e00,#ffc107);"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fitur Unggulan -->
+    <div class="row g-4 mb-5">
+        <div class="col-lg-6">
+            <div class="card-plain p-4 h-100">
+                <h4 class="fw-bold mb-4"><i class="bi bi-stars me-2 text-warning"></i>Fitur Unggulan</h4>
+                <div class="feature-row">
+                    <div class="feature-dot" style="background:#e8f4fa; color:#1a5f7a;"><i class="bi bi-search-heart"></i></div>
+                    <div>
+                        <div class="fw-semibold">Pencarian Cepat & Filter Kategori</div>
+                        <div class="text-muted small">Temukan informasi penyakit berdasarkan nama, gejala, atau obat dalam hitungan detik.</div>
+                    </div>
+                </div>
+                <div class="feature-row">
+                    <div class="feature-dot" style="background:#e9f5ee; color:#117f5f;"><i class="bi bi-capsule-pill"></i></div>
+                    <div>
+                        <div class="fw-semibold">Rekomendasi Obat Terperinci</div>
+                        <div class="text-muted small">Informasi obat farmasi dan herbal/tradisional sebagai pelengkap edukasi kesehatan.</div>
+                    </div>
+                </div>
+                <div class="feature-row">
+                    <div class="feature-dot" style="background:#fff8e8; color:#e67e00;"><i class="bi bi-flower1"></i></div>
+                    <div>
+                        <div class="fw-semibold">Panduan Pengobatan Alternatif</div>
+                        <div class="text-muted small">Referensi herbal dan tradisional yang umum digunakan sebagai pendukung pengobatan.</div>
+                    </div>
+                </div>
+                <div class="feature-row">
+                    <div class="feature-dot" style="background:#ffe8f0; color:#d63384;"><i class="bi bi-shield-check"></i></div>
+                    <div>
+                        <div class="fw-semibold">Informasi Pencegahan</div>
+                        <div class="text-muted small">Tips praktis untuk mencegah penyakit sejak dini berdasarkan data medis terkini.</div>
+                    </div>
+                </div>
+                <div class="feature-row">
+                    <div class="feature-dot" style="background:#e8f0ff; color:#6366f1;"><i class="bi bi-phone"></i></div>
+                    <div>
+                        <div class="fw-semibold">Responsif di Semua Perangkat</div>
+                        <div class="text-muted small">Tampilan optimal di HP, tablet, maupun komputer untuk akses kapan saja.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="col-lg-6">
+            <div class="disclaimer-box h-100">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div style="background:#fff8e8; color:#e67e00; width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:1.5rem;">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                    </div>
+                    <div>
+                        <h4 class="fw-bold mb-0">Disclaimer Medis</h4>
+                        <p class="text-muted small mb-0">Baca sebelum menggunakan informasi ini</p>
+                    </div>
+                </div>
+
+                <div class="disclaimer-item">
+                    <i class="bi bi-x-circle-fill text-danger fs-5 mt-1"></i>
+                    <div>
+                        <div class="fw-semibold">Bukan Pengganti Dokter</div>
+                        <div class="text-muted small">Informasi di SehatPedia hanya bersifat edukatif dan <strong>tidak menggantikan</strong> diagnosis maupun saran medis dari profesional.</div>
+                    </div>
+                </div>
+                <div class="disclaimer-item">
+                    <i class="bi bi-check-circle-fill text-success fs-5 mt-1"></i>
+                    <div>
+                        <div class="fw-semibold">Selalu Konsultasikan ke Dokter</div>
+                        <div class="text-muted small">Untuk gejala yang serius atau berkepanjangan, segera konsultasikan dengan dokter atau kunjungi fasilitas kesehatan terdekat.</div>
+                    </div>
+                </div>
+                <div class="disclaimer-item">
+                    <i class="bi bi-info-circle-fill text-primary fs-5 mt-1"></i>
+                    <div>
+                        <div class="fw-semibold">Dosis Atas Rekomendasi Dokter</div>
+                        <div class="text-muted small">Rekomendasi obat yang tertera adalah referensi umum. Dosis dan pemilihan obat harus ditentukan oleh dokter atau apoteker.</div>
+                    </div>
+                </div>
+                <div class="disclaimer-item">
+                    <i class="bi bi-arrow-repeat text-warning fs-5 mt-1"></i>
+                    <div>
+                        <div class="fw-semibold">Data Terus Diperbarui</div>
+                        <div class="text-muted small">Kami berupaya menjaga keakuratan informasi, namun panduan medis dapat berubah seiring perkembangan ilmu pengetahuan.</div>
+                    </div>
+                </div>
+                <div class="disclaimer-item">
+                    <i class="bi bi-telephone-fill text-danger fs-5 mt-1"></i>
+                    <div>
+                        <div class="fw-semibold">Darurat Medis</div>
+                        <div class="text-muted small">Untuk kondisi darurat, segera hubungi <strong>119 (SPGDT)</strong> atau pergi ke UGD rumah sakit terdekat.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tim -->
+    <h2 class="fw-bold mb-4 text-center">Tim Kami</h2>
+    <div class="row g-4 mb-5 justify-content-center">
+        <div class="col-6 col-md-3">
+            <div class="team-card">
+                <div class="avatar-ring" style="background:#e8f4fa; color:#1a5f7a;"><i class="bi bi-person-fill"></i></div>
+                <div class="fw-bold">dr. Konten</div>
+                <div class="text-muted small mb-2">Kurator Medis</div>
+                <span class="badge" style="background:var(--accent-light); color:var(--accent); font-size:0.72rem;">Dokter Umum</span>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="team-card">
+                <div class="avatar-ring" style="background:#e9f5ee; color:#117f5f;"><i class="bi bi-person-fill"></i></div>
+                <div class="fw-bold">Tim Riset</div>
+                <div class="text-muted small mb-2">Peneliti Kesehatan</div>
+                <span class="badge" style="background:#e8f0ff; color:#6366f1; font-size:0.72rem;">Farmakologi</span>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="team-card">
+                <div class="avatar-ring" style="background:#fff8e8; color:#e67e00;"><i class="bi bi-person-fill"></i></div>
+                <div class="fw-bold">Dev Team</div>
+                <div class="text-muted small mb-2">Pengembang Platform</div>
+                <span class="badge" style="background:#fff0f0; color:#dc3545; font-size:0.72rem;">Frontend & Backend</span>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="team-card">
+                <div class="avatar-ring" style="background:#ffe8f0; color:#d63384;"><i class="bi bi-person-fill"></i></div>
+                <div class="fw-bold">UX Writer</div>
+                <div class="text-muted small mb-2">Penulis Konten</div>
+                <span class="badge" style="background:var(--warn-light); color:#856404; font-size:0.72rem;">Komunikasi Kesehatan</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <h2 class="fw-bold mb-4 text-center">Pertanyaan Umum (FAQ)</h2>
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-9">
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            <i class="bi bi-question-circle me-2 text-primary"></i>Apakah informasi di SehatPedia akurat dan terpercaya?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                            Informasi kami disusun berdasarkan referensi medis terkini dan dikurasi oleh tim yang memiliki latar belakang kesehatan. Namun, selalu disarankan untuk memverifikasi dengan dokter atau apoteker untuk keputusan medis yang konkret.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            <i class="bi bi-question-circle me-2 text-primary"></i>Bisakah saya langsung membeli obat yang direkomendasikan?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                            Beberapa obat yang disebutkan merupakan obat resep dan hanya bisa diperoleh dengan resep dokter. Obat bebas (OTC) seperti antasida atau paracetamol dapat dibeli di apotek, namun tetap perhatikan aturan pakai dan dosisnya.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            <i class="bi bi-question-circle me-2 text-primary"></i>Apakah pengobatan tradisional / herbal aman digunakan?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                            Pengobatan herbal yang kami cantumkan adalah yang umum digunakan secara tradisional. Meski begitu, herbal tidak menggantikan obat medis dan bisa berinteraksi dengan obat tertentu. Selalu konsultasikan dengan dokter sebelum mengonsumsi herbal bersamaan dengan obat medis.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            <i class="bi bi-question-circle me-2 text-primary"></i>Bagaimana cara mengakses SehatPedia di ponsel?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                            SehatPedia dirancang responsif dan dapat diakses langsung melalui browser di HP Anda tanpa perlu mengunduh aplikasi. Cukup buka di Chrome, Safari, atau browser lain untuk pengalaman terbaik.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                            <i class="bi bi-question-circle me-2 text-primary"></i>Apakah SehatPedia gratis digunakan?
+                        </button>
+                    </h2>
+                    <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                            Ya, SehatPedia sepenuhnya gratis dan terbuka untuk umum. Kami percaya bahwa akses terhadap informasi kesehatan dasar adalah hak setiap orang.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-block mb-5">
+        <i class="bi bi-clipboard2-pulse-fill" style="font-size:3rem; opacity:0.2; display:block; margin-bottom:1rem;"></i>
+        <h3 class="fw-bold mb-2">Mulai Cari Informasi Penyakit</h3>
+        <p style="opacity:0.8; max-width:480px; margin:0 auto 1.5rem;">Jelajahi lebih dari 6 penyakit dengan informasi gejala, obat, dan pencegahan yang lengkap.</p>
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
+            <a href="penyakit.html" class="btn btn-cta">
+                <i class="bi bi-search-heart me-2"></i>Lihat Daftar Penyakit
+            </a>
+            <a href="index.html" class="btn btn-outline-light-custom">
+                <i class="bi bi-house me-2"></i>Kembali ke Beranda
+            </a>
+        </div>
+    </div>
+
+    <!-- Kontak -->
+    <div class="card-plain p-4 text-center">
+        <h5 class="fw-bold mb-1"><i class="bi bi-envelope-at me-2 text-primary"></i>Hubungi Kami</h5>
+        <p class="text-muted small mb-3">Punya masukan, pertanyaan, atau ingin berkontribusi? Kami senang mendengar dari Anda.</p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <span class="badge px-3 py-2 rounded-pill" style="background:#e8f4fa; color:var(--primary); font-size:0.85rem;">
+                <i class="bi bi-envelope me-1"></i>info@sehatpedia.id
+            </span>
+            <span class="badge px-3 py-2 rounded-pill" style="background:#e9f5ee; color:var(--accent); font-size:0.85rem;">
+                <i class="bi bi-instagram me-1"></i>@SehatPedia
+            </span>
+            <span class="badge px-3 py-2 rounded-pill" style="background:#fff8e8; color:#e67e00; font-size:0.85rem;">
+                <i class="bi bi-telephone me-1"></i>119 (Darurat Medis)
+            </span>
+        </div>
+    </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer pt-4 pb-3 mt-5">
+    <div class="container text-center">
+        <p class="mb-1"><i class="bi bi-heart-fill text-danger"></i> SehatPedia — Edukasi Kesehatan Terpercaya</p>
+        <small>&copy;2025 • Informasi bersifat edukatif. Konsultasi medis sangat dianjurkan.</small>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
